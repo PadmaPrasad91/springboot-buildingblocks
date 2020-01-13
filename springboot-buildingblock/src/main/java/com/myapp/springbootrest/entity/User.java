@@ -3,8 +3,9 @@ package com.myapp.springbootrest.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class User {
@@ -13,9 +14,11 @@ public class User {
 	@GeneratedValue
 	private Long id;
 
+	@NotEmpty(message="Username is mandatory field and should not be empty")
 	@Column(name = "USER_NAME", length = 50, nullable = false, unique = true)
 	private String username;
 
+	@Size(min=2,message="Firstname should contain atleast 2 characters")
 	@Column(name = "FIRST_NAME", length = 50, nullable = false)
 	private String firstname;
 
