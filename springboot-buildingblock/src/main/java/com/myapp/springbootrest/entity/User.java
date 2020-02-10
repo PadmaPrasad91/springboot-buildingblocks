@@ -10,18 +10,20 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import org.springframework.hateoas.RepresentationModel;
+
 @Entity
-public class User {
+public class User extends RepresentationModel {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Long userid;
 
-	@NotEmpty(message="Username is mandatory field and should not be empty")
+	@NotEmpty(message = "Username is mandatory field and should not be empty")
 	@Column(name = "USER_NAME", length = 50, nullable = false, unique = true)
 	private String username;
 
-	@Size(min=2,message="Firstname should contain atleast 2 characters")
+	@Size(min = 2, message = "Firstname should contain atleast 2 characters")
 	@Column(name = "FIRST_NAME", length = 50, nullable = false)
 	private String firstname;
 
@@ -37,30 +39,32 @@ public class User {
 	@Column(name = "SSN", length = 50, nullable = false, unique = true)
 	private String ssn;
 
-	@OneToMany(mappedBy="user")
-	private List<Order>orders;
-	
+	@OneToMany(mappedBy = "user")
+	private List<Order> orders;
+
 	public User() {
 		super();
 	}
 
-	public User(Long id, String username, String firstname, String lastname, String email, String role, String ssn) {
+	public User(Long userid, String username, String firstname, String lastname, String email, String role, String ssn,
+			List<Order> orders) {
 		super();
-		this.id = id;
+		this.userid = userid;
 		this.username = username;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
 		this.role = role;
 		this.ssn = ssn;
+		this.orders = orders;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getUserid() {
+		return userid;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setUserid(Long userid) {
+		this.userid = userid;
 	}
 
 	public String getUsername() {
@@ -110,7 +114,6 @@ public class User {
 	public void setSsn(String ssn) {
 		this.ssn = ssn;
 	}
-	
 
 	public List<Order> getOrders() {
 		return orders;
@@ -122,8 +125,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", firstname=" + firstname + ", lastname=" + lastname
-				+ ", email=" + email + ", role=" + role + ", ssn=" + ssn + "]";
+		return "User [userid=" + userid + ", username=" + username + ", firstname=" + firstname + ", lastname="
+				+ lastname + ", email=" + email + ", role=" + role + ", ssn=" + ssn + ", orders=" + orders + "]";
 	}
 
 }
