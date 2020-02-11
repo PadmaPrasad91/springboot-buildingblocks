@@ -12,7 +12,11 @@ import javax.validation.constraints.Size;
 
 import org.springframework.hateoas.RepresentationModel;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
+@JsonFilter(value = "userFilter")
 public class User extends RepresentationModel {
 
 	@Id
@@ -36,6 +40,7 @@ public class User extends RepresentationModel {
 	@Column(name = "ROLE", length = 50, nullable = false)
 	private String role;
 
+//	@JsonIgnore   --------static filtering @JsonIgnor
 	@Column(name = "SSN", length = 50, nullable = false, unique = true)
 	private String ssn;
 
