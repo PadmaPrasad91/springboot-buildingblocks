@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.myapp.springbootrest.dto.UserDto;
+import com.myapp.springbootrest.dto.UserMmDto;
 import com.myapp.springbootrest.entity.User;
 import com.myapp.springbootrest.exception.UserNotFoundException;
 import com.myapp.springbootrest.service.UserService;
@@ -27,13 +27,13 @@ public class UserModelMapperController {
 	private ModelMapper modelMapper;
 
 	@GetMapping("/{id}")
-	public UserDto getUserById(@PathVariable("id") @Min(1) Long id) throws UserNotFoundException {
+	public UserMmDto getUserById(@PathVariable("id") @Min(1) Long id) throws UserNotFoundException {
 		Optional<User> userOptional = userService.getUserById(id);
 		if (!userOptional.isPresent()) {
 			throw new UserNotFoundException("User Not Found!");
 		}
 		User user = userOptional.get();
-		UserDto userDto = modelMapper.map(user, UserDto.class);
-		return userDto;
+		UserMmDto userMmDto = modelMapper.map(user, UserMmDto.class);
+		return userMmDto;
 	}
 }

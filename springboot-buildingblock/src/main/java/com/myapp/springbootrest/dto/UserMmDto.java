@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.myapp.springbootrest.entity.Order;
 
-public class UserDto {
+public class UserMmDto {
 
 	private Long userid;
 	private String username;
