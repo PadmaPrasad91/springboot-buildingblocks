@@ -18,7 +18,7 @@ public class UserMapStructController {
 	@Autowired
 	private UserRepository userRepository;
 
-	@Autowired
+	//@Autowired
 	private UserMapper userMapper;
 
 	@GetMapping

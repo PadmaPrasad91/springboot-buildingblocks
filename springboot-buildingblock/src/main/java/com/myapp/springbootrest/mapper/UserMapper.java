@@ -16,10 +16,10 @@ public interface UserMapper {
 	UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
 	// User to UserMsDto
-	@Mappings({
-	@Mapping(source = "email",target = "emailaddress"),
-	@Mapping(source="role",target = "rolename")})
-	UserMsDto userToUserMsDto();
+//	@Mappings({
+//	@Mapping(source  = "email",target = "emailaddress"),
+//	@Mapping(source ="role",target = "rolename")})
+//	UserMsDto userToUserMsDto();
 
 	// List<User> to List<UserMsDto>
 	List<UserMsDto> usersToUserDto(List<User> users);
