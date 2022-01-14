@@ -27,12 +27,12 @@ public class OrderHateoasController {
 	private OrderRepository orderRepository;
 
 	@GetMapping("/{userid}/orders")
-	public CollectionModel<User> getAllOrders(@PathVariable Long userid) throws UserNotFoundException {
+	public CollectionModel<Order> getAllOrders(@PathVariable Long userid) throws UserNotFoundException {
 		Optional<User> userOptional = userRepository.findById(userid);
 		if (!userOptional.isPresent())
 			throw new UserNotFoundException("User Not Found");
 		List<Order>allOrders = userOptional.get().getOrders();
-		CollectionModel<User> finalResource = new CollectionModel(allOrders);
+		CollectionModel<Order> finalResource = CollectionModel.of(allOrders);
 		return finalResource;
 	}
 
